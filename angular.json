@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "formaTestProject": {
+    "forma_qr_project": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "formaTestProject:build:production"
+              "buildTarget": "forma_qr_project:build:production"
             },
             "development": {
-              "buildTarget": "formaTestProject:build:development"
+              "buildTarget": "forma_qr_project:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

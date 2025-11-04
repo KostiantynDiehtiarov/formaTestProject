@@ -1,59 +1,154 @@
-# FormaTestProject
+# QR Code Generator
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+Простий та зручний сервіс для генерації QR-кодів з посилань. Введіть URL, отримайте QR-код та завантажте його у форматі PNG.
 
-## Development server
+## 🚀 Демо
 
-To start a local development server, run:
+**[Демо-версія](https://forma-qr-project.vercel.app)** (після деплою)
 
+## ✨ Функціонал
+
+- ✅ Введення URL та генерація QR-коду
+- ✅ Прев'ю QR-коду на екрані
+- ✅ Експорт QR-коду у форматі PNG
+- ✅ Валідація URL з user-friendly повідомленнями про помилки
+- ✅ Адаптивний дизайн для мобільних пристроїв
+
+## 🛠 Технології
+
+- **Angular** 20.3.0 - фреймворк
+- **qrcode** - бібліотека для генерації QR-кодів
+- **TypeScript** - типізація
+- **SCSS** - стилізація
+
+## 📦 Локальний запуск
+
+### Передумови
+
+- Node.js (версія 18 або вище)
+- npm або yarn
+
+### Встановлення
+
+1. Клонуйте репозиторій:
 ```bash
+git clone <repository-url>
+cd forma_qr_project
+```
+
+2. Встановіть залежності:
+```bash
+npm install
+```
+
+3. Запустіть сервер розробки:
+```bash
+npm start
+# або
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. Відкрийте браузер та перейдіть на `http://localhost:4200/`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Збірка для продакшену
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Артефакти збірки будуть у директорії `dist/forma_qr_project/`.
 
-## Running unit tests
+## 🚀 Деплой
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Vercel (рекомендовано)
 
+1. Підключіть репозиторій до [Vercel](https://vercel.com)
+2. Налаштування:
+   - **Framework Preset**: Angular
+   - **Build Command**: `ng build`
+   - **Output Directory**: `dist/forma_qr_project/browser`
+   - **Install Command**: `npm install`
+
+3. Деплой відбувається автоматично при push у `main` гілку
+
+### Netlify
+
+1. Підключіть репозиторій до [Netlify](https://www.netlify.com)
+2. Налаштування:
+   - **Build command**: `ng build`
+   - **Publish directory**: `dist/forma_qr_project/browser`
+3. Додайте файл `_redirects` у `public/` з вмістом:
+   ```
+   /* /index.html 200
+   ```
+
+### GitHub Pages
+
+1. Встановіть `angular-cli-ghpages`:
 ```bash
-ng test
+npm install -g angular-cli-ghpages
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+2. Зберіть проект:
 ```bash
-ng e2e
+ng build --base-href=/forma_qr_project/
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+3. Деплой:
+```bash
+ngh --dir=dist/forma_qr_project/browser
+```
 
-## Additional Resources
+## 📝 Використання
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Введіть URL у поле вводу (наприклад: `https://example.com` або `example.com`)
+2. Натисніть кнопку "Створити QR-код"
+3. Після генерації QR-код відобразиться на екрані
+4. Натисніть "Завантажити PNG" для експорту файлу
+
+## 🔍 Валідація
+
+Сервіс автоматично:
+- Перевіряє формат URL
+- Додає протокол `https://`, якщо він відсутній
+- Показує зрозумілі повідомлення про помилки
+
+## 🔮 Масштабування та v2
+
+### Масштабування
+
+Для масштабування сервісу можна:
+
+1. **Додати кешування**:
+   - Використати Service Worker для кешування згенерованих QR-кодів
+   - Додати localStorage для збереження історії генерацій
+
+2. **Оптимізація продуктивності**:
+   - Lazy loading компонентів
+   - Оптимізація розміру зображень
+   - CDN для статичних ресурсів
+
+3. **Backend інтеграція** (якщо потрібно):
+   - API для збереження QR-кодів
+   - Аналітика використання
+   - Rate limiting
+
+### Плани для v2
+
+- ✅ **Додаткові формати експорту**: SVG, PDF
+- ✅ **Кастомізація QR-коду**: колір, розмір, логотип у центрі
+- ✅ **Історія генерацій**: збереження останніх QR-кодів
+- ✅ **Batch генерація**: створення кількох QR-кодів одночасно
+- ✅ **Різні типи даних**: текст, email, телефон, WiFi
+- ✅ **Аналітика**: відстеження кількості сканувань (потребує backend)
+- ✅ **Темна тема**: перемикач теми оформлення
+- ✅ **Шеринг**: швидке поширення QR-коду через соціальні мережі
+- ✅ **QR-сканер**: можливість сканувати QR-коди через камеру
+
+## 📄 Ліцензія
+
+MIT
+
+## 👨‍💻 Автор
+
+Розроблено як тестове завдання для демонстрації навичок розробки end-to-end сервісів.
