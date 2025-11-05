@@ -40,9 +40,8 @@ export class App {
       'io', 'ai', 'co', 'tv', 'me', 'dev', 'app', 'tech', 'online', 'site',
       'store', 'shop', 'blog', 'info', 'biz', 'xyz', 'pro', 'name', 'mobi',
       // Інші поширені
-      'eu', 'asia', 'travel', 'jobs', 'museum', 'tel', 'xxx', 'aero'
+      'eu', 'asia', 'travel', 'jobs', 'museum', 'tel', 'aero'
     ];
-
     // Перевірка на наявність у списку поширених TLD
     if (validTlds.includes(tld.toLowerCase())) {
       return true;
@@ -53,23 +52,24 @@ export class App {
     return tldPattern.test(tld);
   }
 
-  private validateUrl(url: string): { isValid: boolean; normalizedUrl?: string } {
+  private validateUrl(url: string): { isValid: boolean; errorType: string; normalizedUrl?: string } {
     const trimmedUrl = url.trim();
 
     // Перевірка на порожній рядок
     if (!trimmedUrl) {
-      return { isValid: false };
+      return { isValid: false, errorType: "Невірний формат посилання"};
     }
 
     // Перевірка мінімальної довжини
     if (trimmedUrl.length < 3) {
-      return { isValid: false };
+      return { isValid: false, errorType: "Невірний формат посилання"};
     }
 
     // Додаємо протокол, якщо його немає
     let urlToValidate = trimmedUrl;
     if (!trimmedUrl.startsWith('http://') && !trimmedUrl.startsWith('https://')) {
-      urlToValidate = 'https://' + trimmedUrl;
+      return { isValid: false, errorType: "Додайте http:// або https:// до вашого посилання"};
+      //urlToValidate = 'https://' + trimmedUrl;
     }
 
     try {
@@ -78,23 +78,23 @@ export class App {
 
       // Перевірка наявності хоста (домену)
       if (!urlObj.hostname || urlObj.hostname.length === 0) {
-        return { isValid: false };
+        return { isValid: false, errorType: "Невірний формат посилання"};
       }
 
       // Перевірка що hostname містить хоча б одну крапку (для доменів)
       if (!urlObj.hostname.includes('.')) {
-        return { isValid: false };
+        return { isValid: false, errorType: "Невірний формат посилання"};
       }
 
       // Перевірка на заборонені символи в hostname
       if (urlObj.hostname.includes('..') || urlObj.hostname.startsWith('.') || urlObj.hostname.endsWith('.')) {
-        return { isValid: false };
+        return { isValid: false, errorType: "Невірний формат посилання"};
       }
 
       // Перевірка доменної зони (TLD)
       const hostnameParts = urlObj.hostname.split('.');
       if (hostnameParts.length < 2) {
-        return { isValid: false };
+        return { isValid: false, errorType: "Не забудьте крапку"};
       }
 
       // Отримуємо TLD (остання частина після останньої крапки)
@@ -102,7 +102,7 @@ export class App {
       
       // Перевірка валідності TLD
       if (!this.isValidTld(tld)) {
-        return { isValid: false };
+        return { isValid: false, errorType: "Невірний формат посилання"};
       }
 
       // Перевірка на локальні адреси (якщо потрібно заборонити)
@@ -111,10 +111,10 @@ export class App {
         // Можна дозволити localhost, але для демо залишаємо перевірку
       }
 
-      return { isValid: true, normalizedUrl: urlObj.toString() };
+      return { isValid: true, errorType : "Все чудово", normalizedUrl: urlObj.toString() };
     } catch (err) {
       // Якщо URL конструктор викинув помилку, посилання невалідне
-      return { isValid: false };
+      return { isValid: false, errorType: "Незрозуміла помилка"};
     }
   }
 
@@ -132,7 +132,8 @@ export class App {
     const validation = this.validateUrl(urlValue);
     
     if (!validation.isValid) {
-      this.error.set('Перевірте Ваше посилання');
+      this.error.set(validation.errorType);
+      //this.error.set('Перевірте Ваше посилання');
       this.qrCodeDataUrl.set(null);
       return;
     }
@@ -158,7 +159,7 @@ export class App {
       this.isLoading.set(false);
     } catch (err) {
       this.isLoading.set(false);
-      this.error.set('Перевірте Ваше посилання');
+      this.error.set('Помилка створення QR коду');
       this.qrCodeDataUrl.set(null);
     }
   }
