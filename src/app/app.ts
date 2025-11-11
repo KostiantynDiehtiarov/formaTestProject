@@ -83,18 +83,18 @@ export class App {
 
       // Перевірка що hostname містить хоча б одну крапку (для доменів)
       if (!urlObj.hostname.includes('.')) {
-        return { isValid: false, errorType: "Невірний формат посилання"};
+        return { isValid: false, errorType: "Не забудьте крапку"};
       }
 
       // Перевірка на заборонені символи в hostname
       if (urlObj.hostname.includes('..') || urlObj.hostname.startsWith('.') || urlObj.hostname.endsWith('.')) {
-        return { isValid: false, errorType: "Невірний формат посилання"};
+        return { isValid: false, errorType: "Десь є зайва крапка"};
       }
 
       // Перевірка доменної зони (TLD)
       const hostnameParts = urlObj.hostname.split('.');
       if (hostnameParts.length < 2) {
-        return { isValid: false, errorType: "Не забудьте крапку"};
+        return { isValid: false, errorType: "Чогось не вистачає"};
       }
 
       // Отримуємо TLD (остання частина після останньої крапки)
