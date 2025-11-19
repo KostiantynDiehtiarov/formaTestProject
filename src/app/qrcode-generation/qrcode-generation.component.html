@@ -1,0 +1,20 @@
+<header>
+  <h1>{{ UI_TEXT.pageTitle }}</h1>
+  <p>{{ UI_TEXT.pageSubtitle }}</p>
+</header>
+
+<main>
+  <app-qrcode-input
+    [isLoading]="isLoading()"
+    [error]="error()"
+    (urlSubmit)="onUrlSubmit($event)"
+  />
+
+  @if (qrCodeDataUrl()) {
+    <app-qrcode-display
+      [qrCodeDataUrl]="qrCodeDataUrl()!"
+      (download)="onDownload()"
+    />
+  }
+</main>
+

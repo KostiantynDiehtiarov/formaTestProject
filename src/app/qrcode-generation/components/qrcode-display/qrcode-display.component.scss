@@ -1,0 +1,31 @@
+@import '../../../styles/constants';
+@import '../../../styles/mixins';
+@import '../../../styles/shared';
+
+:host {
+  @include card;
+  @include fade-in;
+}
+
+.preview {
+  @include flex-center-column($spacing-lg);
+}
+
+h2 {
+  @include text-heading-lg;
+  color: $color-text-primary;
+}
+
+.image-wrapper {
+  padding: $spacing-md;
+  background: $color-bg-light;
+  border-radius: $border-radius-lg;
+  @include flex-center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: $border-radius-md;
+}
+

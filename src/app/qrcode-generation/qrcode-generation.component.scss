@@ -1,0 +1,46 @@
+@import '../styles/constants';
+@import '../styles/mixins';
+
+:host {
+  @include flex-center-column($spacing-xl);
+  min-height: 100vh;
+  padding: $spacing-xl $spacing-md;
+  background: linear-gradient(135deg, $color-primary-start 0%, $color-primary-end 100%);
+}
+
+header {
+  text-align: center;
+  margin-bottom: $spacing-xxl;
+  color: $color-white;
+
+  h1 {
+    @include text-heading-xl;
+    margin-bottom: $spacing-xs;
+    text-shadow: $shadow-sm;
+  }
+
+  p {
+    @include text-subtitle;
+  }
+}
+
+main {
+  width: 100%;
+  max-width: $container-max-width;
+  @include flex-column($spacing-xl);
+}
+
+@include mobile {
+  :host {
+    padding: $spacing-md;
+  }
+
+  header h1 {
+    font-size: $font-size-xl;
+  }
+
+  header p {
+    font-size: $font-size-sm;
+  }
+}
+

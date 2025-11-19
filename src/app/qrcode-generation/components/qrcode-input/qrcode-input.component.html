@@ -1,0 +1,28 @@
+<div class="form-group">
+  <label for="url-input">{{ UI_TEXT.inputLabel }}</label>
+  <div class="input-wrapper">
+    <app-input
+      id="url-input"
+      [placeholder]="UI_TEXT.inputPlaceholder"
+      [(ngModel)]="url"
+      [error]="error"
+      (keydown)="onKeyDown($event)"
+    />
+    <app-button
+      variant="primary"
+      [isLoading]="isLoading"
+      [disabled]="isLoading"
+      (clicked)="onButtonClick()"
+    >
+      @if (isLoading) {
+        <span slot="loading">{{ UI_TEXT.generatingButton }}</span>
+      } @else {
+        {{ UI_TEXT.generateButton }}
+      }
+    </app-button>
+  </div>
+  @if (error) {
+    <div class="error-message">{{ error }}</div>
+  }
+</div>
+

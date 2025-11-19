@@ -1,0 +1,52 @@
+@import '../../../styles/constants';
+@import '../../../styles/mixins';
+@import '../../../styles/shared';
+
+:host {
+  @include card;
+  overflow: hidden; // Prevents content from going outside
+}
+
+.form-group {
+  @include flex-column($spacing-md);
+}
+
+label {
+  @include text-label;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.input-wrapper app-input {
+  flex: 1;
+  min-width: 0; // Allows flex item to shrink below its content size
+  max-width: 100%;
+}
+
+.input-wrapper app-button {
+  flex-shrink: 0; // Button keeps its natural size
+  white-space: nowrap;
+}
+
+@include mobile {
+  .input-wrapper {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+
+  .input-wrapper app-input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .input-wrapper app-button {
+    width: 100%;
+  }
+}
+

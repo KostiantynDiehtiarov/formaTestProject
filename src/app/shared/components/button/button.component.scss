@@ -1,0 +1,12 @@
+@import '../../../styles/constants';
+@import '../../../styles/mixins';
+@import '../../../styles/shared';
+
+:host {
+  display: inline-block;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+

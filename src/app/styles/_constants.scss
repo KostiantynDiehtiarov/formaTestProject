@@ -1,0 +1,67 @@
+// Colors
+$color-primary-start: #667eea;
+$color-primary-end: #764ba2;
+$color-primary-hover-start: #5568d3;
+$color-primary-hover-end: #6a3d8f;
+$color-success: #10b981;
+$color-success-hover: #059669;
+$color-error: #ef4444;
+$color-error-bg: #fef2f2;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-text-primary: #333;
+$color-text-placeholder: #9ca3af;
+$color-border: #e0e0e0;
+$color-bg-light: #f9fafb;
+$color-spinner-border: rgba(255, 255, 255, 0.3);
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+// Border Radius
+$border-radius-sm: 6px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-full: 50%;
+
+// Font Family
+$font-family-primary: 'Roboto', sans-serif;
+
+// Font Sizes
+$font-size-xs: 0.875rem;
+$font-size-sm: 1rem;
+$font-size-md: 1.25rem;
+$font-size-lg: 1.5rem;
+$font-size-xl: 2rem;
+$font-size-xxl: 3rem;
+
+// Font Weights
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
+$shadow-focus: 0 0 0 3px rgba(102, 126, 234, 0.1);
+
+// Transitions
+$transition-fast: 0.2s;
+$transition-normal: 0.3s;
+
+// Breakpoints
+$breakpoint-mobile: 640px;
+
+// Sizes
+$input-min-width: 200px;
+$spinner-size: 16px;
+$container-max-width: 600px;
+$qr-code-width: 400px;
+

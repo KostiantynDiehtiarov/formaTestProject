@@ -1,0 +1,14 @@
+<button
+  [type]="type"
+  [class]="buttonClasses"
+  [disabled]="disabled || isLoading"
+  (click)="onClick()"
+>
+  @if (isLoading) {
+    <span class="spinner"></span>
+    <ng-content select="[slot=loading]"></ng-content>
+  }
+  <ng-content select="[slot=icon]"></ng-content>
+  <ng-content></ng-content>
+</button>
+

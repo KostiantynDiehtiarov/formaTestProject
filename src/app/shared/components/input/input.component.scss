@@ -1,0 +1,24 @@
+@import '../../../styles/constants';
+@import '../../../styles/mixins';
+@import '../../../styles/shared';
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0; // Prevents overflow in flex containers
+}
+
+.input-wrapper {
+  @include flex-column($spacing-md);
+}
+
+.input-container {
+  width: 100%;
+  min-width: 0; // Prevents overflow in flex containers
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
